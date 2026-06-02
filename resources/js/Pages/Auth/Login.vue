@@ -17,7 +17,7 @@ const submit = () => {
 </script>
 
 <template>
-    <div class="min-h-screen bg-gradient-to-br from-blue-50 to-blue-100 flex items-center justify-center p-4">
+    <div class="min-h-screen bg-linear-to-br from-blue-50 to-blue-100 flex items-center justify-center p-4">
         <Head title="Masuk" />
         <div class="w-full max-w-md bg-white rounded-2xl shadow-xl p-8">
             <div class="text-center mb-8">
@@ -49,7 +49,7 @@ const submit = () => {
                 </div>
 
                 <label class="flex items-center gap-2 text-sm text-gray-600 cursor-pointer">
-                    <input v-model="form.remember" type="checkbox" class="rounded text-blue-600" />
+                    <input v-model="form.remember" type="checkbox" class="rounded-sm text-blue-600" />
                     Ingat saya
                 </label>
 

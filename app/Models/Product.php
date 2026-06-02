@@ -33,6 +33,11 @@ class Product extends Model
         return $this->belongsToMany(Category::class);
     }
 
+    public function reviews()
+    {
+        return $this->hasMany(Review::class);
+    }
+
     public function scopeActive($query)
     {
         return $query->where('status', 'active');

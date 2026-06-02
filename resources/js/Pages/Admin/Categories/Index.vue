@@ -115,7 +115,7 @@ const filterStatus = () => {
                     :href="link.url || '#'"
                     v-html="link.label"
                     :class="[link.active ? 'bg-teal-600 text-white' : 'bg-white text-gray-700',
-                             'px-3 py-1 border rounded text-sm']" />
+                             'px-3 py-1 border rounded-sm text-sm']" />
             </div>
 
         </div>

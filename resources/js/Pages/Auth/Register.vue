@@ -18,7 +18,7 @@ const submit = () => {
 </script>
 
 <template>
-    <div class="min-h-screen bg-gradient-to-br from-blue-50 to-blue-100 flex items-center justify-center p-4">
+    <div class="min-h-screen bg-linear-to-br from-blue-50 to-blue-100 flex items-center justify-center p-4">
         <Head title="Daftar" />
         <div class="w-full max-w-md bg-white rounded-2xl shadow-xl p-8">
             <div class="text-center mb-8">

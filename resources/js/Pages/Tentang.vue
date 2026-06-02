@@ -8,7 +8,7 @@ defineProps({
 
 <template>
     <div class="min-h-screen bg-gray-50">
-        <div class="bg-gradient-to-br from-blue-600 to-blue-800 text-white">
+        <div class="bg-linear-to-br from-blue-600 to-blue-800 text-white">
             <div class="max-w-7xl mx-auto px-4 py-20 text-center">
                 <h1 class="text-5xl font-bold mb-4">{{ judul }}</h1>
                 <p class="text-blue-100 text-lg">{{ deskripsi }}</p>

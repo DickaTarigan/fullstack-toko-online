@@ -14,7 +14,7 @@ router.on('success', () => {
 <template>
     <div class="min-h-screen bg-gray-50">
         <!-- NAVBAR -->
-        <nav class="bg-white shadow-sm border-b border-gray-200 sticky top-0 z-40">
+        <nav class="bg-white shadow-xs border-b border-gray-200 sticky top-0 z-40">
             <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
                 <div class="flex justify-between h-16 items-center">
                     <!-- Logo -->
@@ -89,11 +89,11 @@ router.on('success', () => {
 
         <!-- FLASH MESSAGES -->
         <div v-if="flash?.success"
-            class="bg-green-50 border-l-4 border-green-500 p-4 max-w-7xl mx-auto mt-4 rounded">
+            class="bg-green-50 border-l-4 border-green-500 p-4 max-w-7xl mx-auto mt-4 rounded-sm">
             <p class="text-green-700 text-sm font-medium">✅ {{ flash.success }}</p>
         </div>
         <div v-if="flash?.error"
-            class="bg-red-50 border-l-4 border-red-500 p-4 max-w-7xl mx-auto mt-4 rounded">
+            class="bg-red-50 border-l-4 border-red-500 p-4 max-w-7xl mx-auto mt-4 rounded-sm">
             <p class="text-red-700 text-sm font-medium">❌ {{ flash.error }}</p>
         </div>
 
