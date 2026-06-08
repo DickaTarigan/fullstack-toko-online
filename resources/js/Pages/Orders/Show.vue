@@ -17,6 +17,21 @@ const statusClass = computed(() => ({
     delivered:  'bg-green-100 text-green-700', 
     cancelled:  'bg-red-100 text-red-700', 
 }[props.order.status])); 
+
+const statusOrder = ['pending','paid','processing','shipped','delivered']; 
+const isReached = (status) => { 
+    const current = statusOrder.indexOf(props.order.status); 
+    const target  = statusOrder.indexOf(status); 
+    return current >= target; 
+}; 
+const statusTimeline = [ 
+    { status: 'pending',    icon: '🕐', label: 'Pesanan dibuat' }, 
+    { status: 'paid',       icon: '💳', label: 'Pembayaran dikirim' }, 
+    { status: 'processing', icon: '📦', label: 'Dikonfirmasi & Diproses' }, 
+    { status: 'shipped',    icon: '🚚', label: 'Paket dikirim' }, 
+    { status: 'delivered',  icon: '✅', label: 'Pesanan diterima' }, 
+]; 
+
 </script> 
   
 <template> 
@@ -91,13 +106,32 @@ const statusClass = computed(() => ({
                 </p> 
             </div> 
   
-            <!-- Tombol Upload Bayar (hanya jika pending) --> 
-            <!-- Akan diimplementasi di P9 --> 
-            <div v-if="order.status === 'pending'" 
-                 class="card bg-yellow-50 border-yellow-200 text-center"> 
-                <p class="text-yellow-700 font-medium"> 
-                    💳 Upload bukti pembayaran akan tersedia di Pertemuan 9 
+            <div v-if="order.status === 'pending'" class="card bg-yellow-50 borderyellow-200"> 
+                <h3 class="font-bold text-yellow-800 mb-2">⏳ Menunggu Pembayaran</h3> 
+                <p class="text-sm text-yellow-700 mb-4"> 
+                    Segera transfer dan upload bukti pembayaran. 
                 </p> 
+                <Link :href="route('orders.payment', order.id)" 
+                    class="block w-full text-center bg-rose-600 text-white py-2 rounded-lg font-bold"> 
+                    💳 Upload Bukti Pembayaran 
+                </Link> 
+            </div> 
+            
+            <!-- Tambahkan timeline status: --> 
+            <div class="card mt-6"> 
+                <h3 class="font-bold mb-4">📍 Status Pesanan</h3> 
+                <div class="space-y-3"> 
+                    <div v-for="step in statusTimeline" :key="step.status" 
+                        class="flex items-center gap-3 p-3 rounded-lg transition-all" 
+                        :class="isReached(step.status) 
+                            ? 'bg-green-50 border border-green-200' 
+                            : 'bg-gray-50 opacity-40'"> 
+                        <span class="text-xl">{{ step.icon }}</span> 
+                        <span class="font-medium flex-1">{{ step.label }}</span> 
+                        <span v-if="isReached(step.status)" 
+                            class="text-green-600 font-bold">✓</span> 
+                    </div> 
+                </div> 
             </div> 
         </div> 
     </AppLayout> 

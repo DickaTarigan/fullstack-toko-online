@@ -13,7 +13,7 @@ class OrderController extends Controller
     {
         // Sesuaikan 'Dashboard' dengan lokasi file Vue kamu
         // Misalnya jika ada di folder resources/js/Pages/Dashboard.vue
-        return Inertia::render('Dashboard'); 
+        return Inertia::render('Buyer/Dashboard'); 
     }
 
     // ─── index(): Daftar pesanan buyer ──────────────────────────── 

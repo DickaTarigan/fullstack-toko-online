@@ -13,6 +13,7 @@ use App\Http\Controllers\Admin\CategoryController;
 use App\Http\Controllers\Admin\UserController;
 use App\Http\Controllers\Admin\DashboardController as AdminDashboard;
 use App\Http\Controllers\Admin\ReportController;
+use App\Http\Controllers\PaymentController; 
 use App\Http\Controllers\Seller\DashboardController as SellerDashboard;
 use App\Http\Controllers\Seller\ProductController as SellerProductController;
 use App\Http\Controllers\Seller\OrderController as SellerOrderController;
@@ -48,7 +49,11 @@ Route::middleware(['auth', 'role:buyer'])->group(function () {
     Route::post('/wishlist/{product}', [WishlistController::class, 'toggle'])->name('wishlist.toggle');
     Route::get('/wishlist', [WishlistController::class, 'index'])->name('wishlist.index');
     Route::post('/products/{product}/reviews', [ReviewController::class, 'store'])->name('reviews.store');
-}); // <-- INI PENUTUP YANG HILANG SEBELUMNYA
+
+    Route::get('/orders/{order}/payment', [PaymentController::class, 'show'])->name('orders.payment'); 
+    Route::post('/orders/{order}/payment', [PaymentController::class, 'upload'])->name('orders.payment.upload'); 
+
+    }); // <-- INI PENUTUP YANG HILANG SEBELUMNYA
 
 // ─── SELLER ───────────────────────────────────────────────────────────────
 Route::middleware(['auth', 'role:seller'])
@@ -63,7 +68,12 @@ Route::middleware(['auth', 'role:seller'])
         Route::post('/orders/{order}/ship', [SellerOrderController::class, 'ship'])->name('orders.ship');
         Route::post('/payments/{payment}/verify', [SellerPaymentController::class, 'verify'])->name('payments.verify');
         Route::post('/payments/{payment}/reject', [SellerPaymentController::class, 'reject'])->name('payments.reject');
-    });
+    
+        Route::resource('orders', SellerOrderController::class) ->only(['index', 'show']); 
+        Route::post('/orders/{order}/verify', [SellerOrderController::class, 'verify'])->name('orders.verify'); 
+        Route::post('/orders/{order}/reject', [SellerOrderController::class, 'reject'])->name('orders.reject'); 
+        Route::post('/orders/{order}/ship', [SellerOrderController::class, 'ship'])->name('orders.ship');     
+        });
 
 // ─── ADMIN ────────────────────────────────────────────────────────────────
 Route::middleware(['auth', 'role:admin'])

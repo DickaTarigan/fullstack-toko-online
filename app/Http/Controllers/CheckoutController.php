@@ -16,7 +16,8 @@ class CheckoutController extends Controller
     { 
         // Di P8 ini, kirim produk sample untuk simulasi checkout. 
         // Di P10 setelah cart ada, items diambil dari cart buyer. 
-        $sampleItems = Product::where('status', 'active') 
+        $sampleItems = Product::where('status', 'active')
+                               ->where('user_id', 3) //mengganti 2 teratas barang seller
                                ->take(2)->get() 
                                ->map(fn($p) => [ 
                                    'product_id'    => $p->id, 
